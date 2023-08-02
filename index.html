@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="apple-touch-icon" href="png/logo.png">
+	<link rel="icon" href="png/logo.png">
+
+	<title>particle sound by njal</title>
+	<meta name="description" content="Music-based particle engine that simulates random movement around a centre of gravity and changes the sound experience depending on the position of the centre.">
+
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="particle sound by njal">
+	<meta property="og:description" content="Music-based particle engine that simulates random movement around a centre of gravity and changes the sound experience depending on the position of the centre.">
+	<meta property="og:url" content="https://njalnilum.github.io/">
+	<meta property="og:image" content="https://njalnilum.github.io/njal.github.io/png/logo.png">
+
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="css/switchButton.css" />
+
+	<style>
+		
+	 </style>
+</head>
+
+<body>
+	<div>
+		<canvas class="canvasParticle" id="canvasParticle"></canvas>
+	</div>
+
+	<div id="header">
+		<div class="caption">
+			<h1>particle sound</h1>
+		</div>
+		<a href="https://njalnilum.github.io/" target="_blank">by njal</a>
+	</div>
+
+	<div class="container_Footer">
+		<div class="divMediaButtonsParent">
+			<div class=divMediaButtons>
+				<img class="mediaButtons" id="btnPlay" src="png/play.png" alt="Press play" onclick="PressPlay()"></img>
+				<img class="mediaButtons" id="btnStop" src="png/stop.png" alt="Press stop" onclick="PressStop()"></img>
+				<img class="mediaButtons" id="btnPause" src="png/pause.png" alt="Press pause"
+					onclick="PressPause()"></img>
+
+				<div class=divSwitchButtons>
+					<label class="labelSwitchButtons">Mouse tracking</label>
+					<label class="switch">
+						<input type="checkbox" id="mouseTracking" onclick="PressMouseTracking()">
+						<span class="slider round"></span>
+					</label>
+				</div>
+				<div class=divSwitchButtons>
+					<label class="labelSwitchButtons">Full screen</label>
+					<label class="switch">
+						<input type="checkbox" id="fullScreen" onclick="PressFullScreen()">
+						<span class="slider round"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="content">
+	</div>
+
+
+
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+	<script src="js/math.js"></script>
+	<script src="js/bezier.js"></script>
+	<script src="js/color.js"></script>
+	<script src="js/audioPlayer.js"></script>
+	<script src="js/rectangleControl.js"></script>
+	<script src="js/particleParameter.js"></script>
+	<script src="js/orbitalParticle.js"></script>
+	<script src="js/scatterParticle.js"></script>
+	<script src="js/particleScatterEvent.js"></script>
+	<script src="js/canvasForParticle.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>
