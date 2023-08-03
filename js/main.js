@@ -30,6 +30,8 @@ configRectControl.TrailingMousePositionAdaption = 0.03;
 let rectControl = new RectangleControl(configRectControl, refercenSystem, particleCanvas, audioPlayer);
 
 // this starts all
+particleCanvas.DoColorUpdates = true;
+document.getElementById("colours").checked = true;
 rectControl.Start();
 
 
@@ -57,6 +59,12 @@ function PressPlay() {
 function PressMouseTracking() {
     var checkBox = document.getElementById("mouseTracking");
     rectControl.SetMouseTracking(checkBox.checked);
+}
+
+/** Click event for color adaption */
+function PressColours() {
+    var checkBox = document.getElementById("colours");
+    particleCanvas.DoColorUpdates = checkBox.checked;
 }
 
 /** Click event full screen */
