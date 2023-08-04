@@ -1,10 +1,12 @@
 # chroma-sonics
 
-Introducing **chromaSonics: interactive particles and spatial sound**. This endeavour brings together the enchanting dance of particles and the mesmerising power of sound in a harmonious symphony of interaction. As the particles traverse the realm, their vibrant hues change gracefully according to their surroundings, captivating the viewer's senses. Activate MouseTracking to watch the particles gracefully orbit the cursor, creating a captivating ballet of colour.
+Introducing **chroma-sonics: interactive particles and spatial sound**. This endeavour brings together the enchanting dance of particles and the mesmerising power of sound in a harmonious symphony of interaction. As the particles traverse the realm, their vibrant hues change gracefully according to their surroundings, captivating the viewer's senses. Activate MouseTracking to watch the particles gracefully orbit the cursor, creating a captivating ballet of colour.
 
 But the experience goes beyond sight. Immerse yourself in a dynamic auditory journey where the music evolves in response to your exploration. Four distinct trunks intertwine, their crescendos and decrescendos orchestrated by the cursor's placement. Your every movement creates an intricate sonic tapestry, forging a profound connection between your visual engagement and sonic experience.
 
-Welcome to 'ChromaSonics', an artistic expedition where the visual and auditory realms intertwine, offering a multi-sensory journey that is as captivating as it is immersive.
+Welcome to 'chroma-sonics', an artistic expedition where the visual and auditory realms intertwine, offering a multi-sensory journey that is as captivating as it is immersive.
+
+*I would certainly have thought of a text with so much pathos myself, but never to describe my own work. That would be too pretentious and intrusive. But hey, if the text was written by a good acquaintance, that's fine. So thank you ChatGPT;-)*
 
 ### Usage
 - **press play button**
