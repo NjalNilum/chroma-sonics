@@ -1,4 +1,4 @@
-# chromaSonics
+# chroma-sonics
 
 Introducing **chromaSonics: interactive particles and spatial sound**. This endeavour brings together the enchanting dance of particles and the mesmerising power of sound in a harmonious symphony of interaction. As the particles traverse the realm, their vibrant hues change gracefully according to their surroundings, captivating the viewer's senses. Activate MouseTracking to watch the particles gracefully orbit the cursor, creating a captivating ballet of colour.
 
@@ -9,7 +9,7 @@ Welcome to 'ChromaSonics', an artistic expedition where the visual and auditory 
 ### Usage
 - **press play button**
 - activate *mouse tracking*
-- push mouse left
+- press mouse left
 - move mouse
 - or deactivate *mouse tracking* and just relax in *full screen*
 
