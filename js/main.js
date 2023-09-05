@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const caption = document.querySelector(".caption");
+  caption.classList.add("show-letters");
+});
+
 let audioPlayer = new AudioPlayer();
 const dpr = window.devicePixelRatio || 1;
 let refercenSystem = new Rectangle(window.innerWidth * dpr, window.innerHeight * dpr)
