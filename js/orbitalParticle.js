@@ -236,7 +236,7 @@ class OrbitalParticle {
          * Arcane numbers everywhere you look. At the beginning, the adaptation is reduced so that the transient looks nicer:-) After the swing-in applies:
          * this.#orbitalCenterAdaption = config.OrbitalCenterAdaption
          */
-        this.#orbitalCenterAdaption = config.OrbitalCenterAdaption * 0.2;
+        this.#orbitalCenterAdaption = config.OrbitalCenterAdaption * 0.05;
         this.#referenceSystem = referenceSystem;
         this.#color = config.Color.Copy();
         this.#proximity = new Proximity();

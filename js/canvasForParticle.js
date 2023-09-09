@@ -75,6 +75,8 @@ class ConfigParticleCanvas {
         new Color(10, 10, 255)];
 }
 
+const initIsOverEvent = new Event('initIsOverEvent');
+
 /**
  * Canvas class for painting the particles.
  */
@@ -135,6 +137,12 @@ class CanvasForParticle {
      */
     #newScatterEvent;
 
+    /**
+     * If true, the particle is in the transient process. The settling process continues until the current position of the 
+     * particle is very close to 'newOrbitalCenter' (UpdateParameters).
+     */
+    IsInit;
+
     /** 
      * If true, the colour of each particle is recalculated per iteration and depending on the proximity. Otherwise, the colour remains at the last value.
      * @type {boolean}
@@ -159,6 +167,7 @@ class CanvasForParticle {
         this.DoColorUpdates = false;
         this.#scatterMovements = [];
         this.#newScatterEvent = false;
+        this.IsInit = true;
 
         this.UpdateDimensions(this.#referenceRect.Width(), this.#referenceRect.Height());
         this.#setUpParticles();
@@ -257,6 +266,12 @@ class CanvasForParticle {
                 });
             }
             else {
+                if (this.IsInit)
+                {
+                    // This is the first run, that isnt init anymore
+                    this.IsInit = false;
+                    document.dispatchEvent(initIsOverEvent);
+                }
                 this.#particles.forEach(actualParticle => {
                     // clean up lines, because lines must be repainted on every iteration and thats because relations may change, because of distances
                     actualParticle.Lines.clear();

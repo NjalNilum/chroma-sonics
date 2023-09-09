@@ -1,3 +1,27 @@
+/* Ouch --> Clean up man */
+Audio_A = new Audio("/mp3/leftTop.mp3");
+Audio_B = new Audio("/mp3/rightTop.mp3");
+Audio_C = new Audio("/mp3/rightBottom.mp3");
+Audio_D = new Audio("/mp3/leftBottom.mp3");  
+Audio_Beat = new Audio("/mp3/baseSub.mp3");
+Audio_Whistle = new Audio("/mp3/whistle.mp3");
+
+function InitiCompleted() {
+    // That's on purpose, I'm a science fiction fan. And yes, 
+    // I know that sound waves do not propagate around a vacuum. 
+    // All the movies do it that way... so it must be cool.
+    setTimeout(function() {
+        Audio_Beat.play();
+        Audio_Whistle.pause();
+        Audio_Whistle.currentTime = 0;
+      }, 500);
+      
+    Audio_A.play();
+    Audio_B.play();
+    Audio_C.play();
+    Audio_D.play();
+}
+
 /**
  * Class for playing four audio streams, one per corner of the browser window.
  * The volume of the audio stream depends on the mouse position. I.g. stream A should be loudest, when mouse pointer is near corner A of the rectangle (top left).
@@ -10,14 +34,18 @@ class AudioPlayer {
     #intervalId = -1;
 
     constructor() {
-        this.Audio_A = new Audio("/mp3/leftTop.mp3");
-        this.Audio_B = new Audio("/mp3/rightTop.mp3");
-        this.Audio_C = new Audio("/mp3/rightBottom.mp3");
-        this.Audio_D = new Audio("/mp3/leftBottom.mp3");
-
-        this.Audio_Beat = new Audio("/mp3/baseSub.mp3");
-        this.#internSetVolume(this.Audio_Beat, 1);
+        Audio_A = new Audio("/mp3/leftTop.mp3");
+        Audio_B = new Audio("/mp3/rightTop.mp3");
+        Audio_C = new Audio("/mp3/rightBottom.mp3");
+        Audio_D = new Audio("/mp3/leftBottom.mp3");
+        
+        Audio_Beat = new Audio("/mp3/baseSub.mp3");
+        Audio_Whistle = new Audio("/mp3/whistle.mp3");
+        this.#internSetVolume(Audio_Beat, 1);
+        document.addEventListener('initIsOverEvent', InitiCompleted);
     }
+
+
 
     /**
      * Internal function to set the volume of the given audio stream.
@@ -45,45 +73,37 @@ class AudioPlayer {
 
     #setVolumeFromArray(factor)
     {
-        this.#internSetVolume(this.Audio_A, this.#volumeArray[0]*factor);
-        this.#internSetVolume(this.Audio_B, this.#volumeArray[1]*factor);
-        this.#internSetVolume(this.Audio_C, this.#volumeArray[2]*factor);
-        this.#internSetVolume(this.Audio_D, this.#volumeArray[3]*factor);
+        this.#internSetVolume(Audio_A, this.#volumeArray[0]*factor);
+        this.#internSetVolume(Audio_B, this.#volumeArray[1]*factor);
+        this.#internSetVolume(Audio_C, this.#volumeArray[2]*factor);
+        this.#internSetVolume(Audio_D, this.#volumeArray[3]*factor);
     }
 
     /**
      * Play the four audio streams. 
      */
     Play() {
-        this.Audio_A.play();
-        this.Audio_B.play();
-        this.Audio_C.play();
-        this.Audio_D.play();
-    }
-
-    /**
-     * Pause the four audio streams. 
-     */
-    Pause() {
-        this.Audio_A.pause();
-        this.Audio_B.pause();
-        this.Audio_C.pause();
-        this.Audio_D.pause();
+        Audio_Beat.pause();
+        Audio_Beat.currentTime = 0;
+        Audio_Whistle.play();
     }
 
     /**
     * Pause the four audio streams. 
     */
     Stop() {
-        this.Audio_A.pause();
-        this.Audio_B.pause();
-        this.Audio_C.pause();
-        this.Audio_D.pause();
+        Audio_A.pause();
+        Audio_B.pause();
+        Audio_C.pause();
+        Audio_D.pause();
 
-        this.Audio_A.currentTime = 0;
-        this.Audio_B.currentTime = 0;
-        this.Audio_C.currentTime = 0;
-        this.Audio_D.currentTime = 0;
+        Audio_A.currentTime = 0;
+        Audio_B.currentTime = 0;
+        Audio_C.currentTime = 0;
+        Audio_D.currentTime = 0;
+        
+        Audio_Whistle.pause();
+        Audio_Whistle.currentTime=0;
     }
 
     #updateVolume() {
@@ -116,11 +136,10 @@ class AudioPlayer {
     PlayImpact() {
         this.#updateVolume();
         
-        this.#internSetVolume(this.Audio_Beat, 0);
-        this.Audio_Beat.pause();
-        this.Audio_Beat.currentTime=0;
-        this.#internSetVolume(this.Audio_Beat, 1);
-        this.Audio_Beat.play();
+        this.#internSetVolume(Audio_Beat, 0);
+        Audio_Beat.pause();
+        Audio_Beat.currentTime=0;
+        this.#internSetVolume(Audio_Beat, 1);
+        Audio_Beat.play();
     }
-
 }

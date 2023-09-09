@@ -131,17 +131,13 @@ class RectangleControl {
         }
     }
 
-    Pause() {
-        this.#hasStarted = false;
-    }
-
-
     Reset() {
         this.#hasStarted = false;
         this.#resetMousePositionToCenter();
         this.#particleCanvas.ResetParticles();
         this.UpdateRectAndMovement();
         this.#particleCanvas.UpdateOrbit(this.#mouseTrackingActive);
+        this.#particleCanvas.IsInit = true;
     }
 
     /**

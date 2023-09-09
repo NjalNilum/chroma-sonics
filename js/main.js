@@ -1,7 +1,18 @@
+/* NTS 
+ * In no universe would you ever have come through a PR. By the way, that applies to many parts of this project. 
+ * And if you ever have a lot of time, be so good as to clean up here and everywhere else.
+ */
+
+// Text animation
 document.addEventListener("DOMContentLoaded", function () {
   const caption = document.querySelector(".caption");
   caption.classList.add("show-letters");
 });
+
+
+/** Internal helper. Reasons. 
+     * @type {boolean}*/
+let hasStarted = false;
 
 let audioPlayer = new AudioPlayer();
 const dpr = window.devicePixelRatio || 1;
@@ -34,30 +45,24 @@ let configRectControl = new ConfigRectangleControl();
 configRectControl.TrailingMousePositionAdaption = 0.03;
 let rectControl = new RectangleControl(configRectControl, refercenSystem, particleCanvas, audioPlayer);
 
-// this starts all
+// Config
 particleCanvas.DoColorUpdates = true;
 document.getElementById("colours").checked = true;
-rectControl.Start();
-
-
-/** Click on pause button */
-function PressPause() {
-    audioPlayer.Pause();
-    rectControl.Pause();
-}
 
 /** Click on stop button */
 function PressStop() {
     audioPlayer.Stop();
     rectControl.Reset();
-    particleCanvas.DoColorUpdates = false;
+    hasStarted = false;
 }
 
 /** Click on PLay button */
 function PressPlay() {
-    audioPlayer.Play();
-    particleCanvas.DoColorUpdates = true;
-    rectControl.Start();
+    if (!hasStarted) {
+        rectControl.Start();
+        audioPlayer.Play();
+        hasStarted = true;
+    }
 }
 
 /** Click event mouse tracking */
