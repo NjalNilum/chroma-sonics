@@ -4,10 +4,21 @@
  */
 
 // Text animation
-document.addEventListener("DOMContentLoaded", function () {
-  const caption = document.querySelector(".caption");
-  caption.classList.add("show-letters");
-});
+// Buchstaben auswählen
+const letters = document.querySelectorAll('.letter');
+
+// Funktion, um die Buchstaben nacheinander anzuzeigen
+function showLetters(index) {
+  if (index < letters.length) {
+    letters[index].classList.add('show');
+    setTimeout(() => {
+      showLetters(index + 1);
+    }, 100); // 1000 Millisekunden (1 Sekunde) Verzögerung zwischen den Buchstaben
+  }
+}
+
+// Animation starten
+showLetters(0);
 
 
 /** Internal helper. Reasons. 
@@ -63,6 +74,17 @@ function PressPlay() {
         audioPlayer.Play();
         hasStarted = true;
     }
+
+
+    // Erase the press play div
+    const centeredMaxDiv = document.querySelector('.centered-max-div');
+    if (centeredMaxDiv) {
+      centeredMaxDiv.remove();
+    }
+
+    // fade in the title and my name
+    const header = document.getElementById('header');
+    header.classList.add('fadeInAnimation');
 }
 
 /** Click event mouse tracking */

@@ -12,10 +12,11 @@ function InitiCompleted() {
     // All the movies do it that way... so it must be cool.
     setTimeout(function() {
         Audio_Beat.play();
-        Audio_Whistle.pause();
-        Audio_Whistle.currentTime = 0;
+        
       }, 500);
       
+      Audio_Whistle.pause();
+        Audio_Whistle.currentTime = 0;
     Audio_A.play();
     Audio_B.play();
     Audio_C.play();
