@@ -7,16 +7,9 @@ Audio_Beat = new Audio("/mp3/baseSub.mp3");
 Audio_Whistle = new Audio("/mp3/whistle.mp3");
 
 function InitiCompleted() {
-    // That's on purpose, I'm a science fiction fan. And yes, 
-    // I know that sound waves do not propagate around a vacuum. 
-    // All the movies do it that way... so it must be cool.
-    setTimeout(function() {
-        Audio_Beat.play();
-        
-      }, 500);
-      
-      Audio_Whistle.pause();
-        Audio_Whistle.currentTime = 0;
+    Audio_Beat.play();  
+    Audio_Whistle.pause();
+    Audio_Whistle.currentTime = 0;
     Audio_A.play();
     Audio_B.play();
     Audio_C.play();
@@ -25,7 +18,8 @@ function InitiCompleted() {
 
 /**
  * Class for playing four audio streams, one per corner of the browser window.
- * The volume of the audio stream depends on the mouse position. I.g. stream A should be loudest, when mouse pointer is near corner A of the rectangle (top left).
+ * The volume of the audio stream depends on the mouse position. 
+ * I.g. stream A should be loudest, when mouse pointer is near corner A of the rectangle (top left).
  */
 class AudioPlayer {
     #volumeAdjust = 1;
@@ -42,6 +36,7 @@ class AudioPlayer {
         
         Audio_Beat = new Audio("/mp3/baseSub.mp3");
         Audio_Whistle = new Audio("/mp3/whistle.mp3");
+        Audio_Whistle.volume = 0.7;
         this.#internSetVolume(Audio_Beat, 1);
         document.addEventListener('initIsOverEvent', InitiCompleted);
     }
@@ -135,12 +130,14 @@ class AudioPlayer {
      * Play impact. 
      */
     PlayImpact() {
-        this.#updateVolume();
-        
-        this.#internSetVolume(Audio_Beat, 0);
-        Audio_Beat.pause();
-        Audio_Beat.currentTime=0;
-        this.#internSetVolume(Audio_Beat, 1);
-        Audio_Beat.play();
+        if (!Audio_A.paused)
+        {
+            this.#updateVolume();
+            this.#internSetVolume(Audio_Beat, 0);
+            Audio_Beat.pause();
+            Audio_Beat.currentTime=0;
+            this.#internSetVolume(Audio_Beat, 1);
+            Audio_Beat.play();
+        }
     }
 }

@@ -379,11 +379,11 @@ class OrbitalParticle {
              * A beautiful arcane number that helps keep the speed of particles approaching the centre "nearly" constant. :-) 
              * The smaller the distance between the new orbital centre and the current orbital centre, the smaller the absolute pixel increment. 
              * And therefore the adaptation factor must be constantly increased. 
-             * Hmmm, if this were a real particle engine, the speed and direction of a particle would be available as a vector. And the particles would have weight 
-             * and attraction... but that might be going too far.
+             * Hmmm, if this were a real particle engine, the speed and direction of a particle would be available as a vector. And the particles 
+             * would have weight and attraction... but that might be going too far.
              */
             this.#orbitalCenterAdaption *= 1.009; // 
-            if (this.#position.distanceTo(newOrbitalCenter) < 5) {
+            if (this.#position.distanceTo(newOrbitalCenter) < 1) {
                 // End init mode
                 this.#init = false;
                 // Reset adaption
@@ -397,7 +397,9 @@ class OrbitalParticle {
         this.#angle += this.#speed.CurrentValue;
 
         // Multiplication with changeSignRandom() ensures that the particles move either clockwise or anti-clockwise.
-        this.#position = this.#orbitalCenter.GetOrbitalPoint(this.#angle * this.#diretionOfRotation, this.#orbitX.CurrentValue, this.#orbitY.CurrentValue);
+        this.#position = this.#orbitalCenter.GetOrbitalPoint(this.#angle * this.#diretionOfRotation, 
+                                                             this.#orbitX.CurrentValue, 
+                                                             this.#orbitY.CurrentValue);
 
         // Rotate
         this.#position = Rotate(this.#orbitalCenter, this.#position, this.#theta.CurrentValue);

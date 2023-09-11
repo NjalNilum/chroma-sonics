@@ -210,3 +210,22 @@ div#header h1 {
     letter-spacing: 20px;
     font-size: 24pt;
 }
+
+.centered-max-div2 {
+    position: absolute;
+    top: calc(50% + 20px); /* 50% der Höhe plus 10px Abstand */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14pt;
+    letter-spacing: 3px;
+    color: #555555; 
+    animation: fadeIn1 3s ease-in-out 1s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn1 {
+    to {
+      opacity: 1;
+    }
+}

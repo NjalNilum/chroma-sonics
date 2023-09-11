@@ -64,6 +64,7 @@ document.getElementById("colours").checked = true;
 function PressStop() {
     audioPlayer.Stop();
     rectControl.Reset();
+    particleCanvas.ClearScatterEvents();
     hasStarted = false;
 }
 
@@ -73,13 +74,6 @@ function PressPlay() {
         rectControl.Start();
         audioPlayer.Play();
         hasStarted = true;
-    }
-
-
-    // Erase the press play div
-    const centeredMaxDiv = document.querySelector('.centered-max-div');
-    if (centeredMaxDiv) {
-      centeredMaxDiv.remove();
     }
 
     // fade in the title and my name

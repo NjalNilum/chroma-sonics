@@ -173,12 +173,14 @@ class CanvasForParticle {
         this.#setUpParticles();
 
         this.#config.DomCanvas.addEventListener("mousedown", (event) => {
+            if (!this.IsInit) {
             this.#newScatterEvent = true;
             this.#scatterMovements.push(new particleScatterEvent(
                 24,
                 new Point(event.clientX * this.#config.Dpr, event.clientY * this.#config.Dpr),
                 this.#referenceRect,
                 this.#cornerColors));
+            }
         });
     }
 
@@ -205,6 +207,13 @@ class CanvasForParticle {
     UpdateDimensions(width, height) {
         this.#config.DomCanvas.width = width;
         this.#config.DomCanvas.height = height;
+    }
+
+    /**
+     * Use this method to claar all scatter events. I.g. when pressing on stop.
+     */
+    ClearScatterEvents() {
+        this.#scatterMovements.length = 0;
     }
 
     /**
@@ -272,27 +281,32 @@ class CanvasForParticle {
                     this.IsInit = false;
                     document.dispatchEvent(initIsOverEvent);
                 }
-                this.#particles.forEach(actualParticle => {
-                    // clean up lines, because lines must be repainted on every iteration and thats because relations may change, because of distances
-                    actualParticle.Lines.clear();
-
-                    // set opacity
-                    this.#updateOpacityOfParticle(actualParticle);
-
-                    this.#drawParticle(actualParticle);
-                    actualParticle.UpdateParameters(rectControl.MousePosition());
-
-                    if (this.DoColorUpdates) {
-                        actualParticle.UpdateColor(this.#cornerColors, this.#config.FactorForUsingLogisticColorFunction);
-                    }
-                });
-
-                // Paint lines only when not in init.
-                if (this.#config.MaximumLinkDistances > 0) {
-                    this.#doClostestStuff();
+                // Thought maybe that would soften the effect a bit. At the moment the audio beat seems to be played too late. Ultimately, 
+                // this "else" saves one loop pass here and is therefore negligible.
+                else 
+                {
                     this.#particles.forEach(actualParticle => {
-                        this.#drawLines(actualParticle);
+                        // clean up lines, because lines must be repainted on every iteration and thats because relations may change, because of distances
+                        actualParticle.Lines.clear();
+
+                        // set opacity
+                        this.#updateOpacityOfParticle(actualParticle);
+
+                        this.#drawParticle(actualParticle);
+                        actualParticle.UpdateParameters(rectControl.MousePosition());
+
+                        if (this.DoColorUpdates) {
+                        actualParticle.UpdateColor(this.#cornerColors, this.#config.FactorForUsingLogisticColorFunction);
+                        }
                     });
+
+                    // Paint lines only when not in init.
+                    if (this.#config.MaximumLinkDistances > 0) {
+                        this.#doClostestStuff();
+                        this.#particles.forEach(actualParticle => {
+                            this.#drawLines(actualParticle);
+                        });
+                    }
                 }
             }
             this.#newScatterEvent = false;
