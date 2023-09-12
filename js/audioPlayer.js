@@ -4,7 +4,8 @@ Audio_B = new Audio("/mp3/rightTop.mp3");
 Audio_C = new Audio("/mp3/rightBottom.mp3");
 Audio_D = new Audio("/mp3/leftBottom.mp3");  
 Audio_Beat = new Audio("/mp3/baseSub.mp3");
-Audio_Whistle = new Audio("/mp3/whistle.mp3");
+Audio_Whistle = new Audio("/mp3/whistleEffect.mp3");
+Audio_Whistle.volume = 0.7;
 
 function InitiCompleted() {
     Audio_Beat.play();  
@@ -29,14 +30,6 @@ class AudioPlayer {
     #intervalId = -1;
 
     constructor() {
-        Audio_A = new Audio("/mp3/leftTop.mp3");
-        Audio_B = new Audio("/mp3/rightTop.mp3");
-        Audio_C = new Audio("/mp3/rightBottom.mp3");
-        Audio_D = new Audio("/mp3/leftBottom.mp3");
-        
-        Audio_Beat = new Audio("/mp3/baseSub.mp3");
-        Audio_Whistle = new Audio("/mp3/whistle.mp3");
-        Audio_Whistle.volume = 0.7;
         this.#internSetVolume(Audio_Beat, 1);
         document.addEventListener('initIsOverEvent', InitiCompleted);
     }
