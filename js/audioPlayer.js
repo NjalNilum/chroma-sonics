@@ -1,5 +1,5 @@
 /* Ouch --> Clean up man */
-Audio_Whistle = new Audio("/mp3/a_effect.mp3");
+Audio_Whistle = document.getElementById("whistle");
 Audio_Whistle.volume = 0.7;
 Audio_A = new Audio("/mp3/leftTop.mp3");
 Audio_B = new Audio("/mp3/rightTop.mp3");
