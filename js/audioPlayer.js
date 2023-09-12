@@ -1,20 +1,17 @@
 /* Ouch --> Clean up man */
 Audio_Whistle = document.getElementById("whistle");
 Audio_Whistle.volume = 0.7;
-Audio_A = new Audio("/mp3/leftTop.mp3");
-Audio_B = new Audio("/mp3/rightTop.mp3");
-Audio_C = new Audio("/mp3/rightBottom.mp3");
-Audio_D = new Audio("/mp3/leftBottom.mp3");  
-Audio_Beat = new Audio("/mp3/baseSub.mp3");
+Audio_A = document.getElementById("audio_a");
+Audio_B = document.getElementById("audio_b");
+Audio_C = document.getElementById("audio_c");
+Audio_D = document.getElementById("audio_d");
+Audio_Beat = document.getElementById("beat");
 
 function InitiCompleted() {
-    Audio_Beat.play();  
+    audioPlayer.PlayImpact();  
     Audio_Whistle.pause();
     Audio_Whistle.currentTime = 0;
-    Audio_A.play();
-    Audio_B.play();
-    Audio_C.play();
-    Audio_D.play();
+
 }
 
 /**
@@ -24,9 +21,7 @@ function InitiCompleted() {
  */
 class AudioPlayer {
     #volumeAdjust = 1;
-
     #volumeArray = [0, 0, 0, 0];
-
     #intervalId = -1;
 
     constructor() {
@@ -75,6 +70,11 @@ class AudioPlayer {
         Audio_Beat.pause();
         Audio_Beat.currentTime = 0;
         Audio_Whistle.play();
+
+        Audio_A.play();
+        Audio_B.play();
+        Audio_C.play();
+        Audio_D.play();
     }
 
     /**
@@ -95,6 +95,14 @@ class AudioPlayer {
         Audio_Whistle.currentTime=0;
     }
 
+    /* 
+    The following code is an incredibly bumbling attempt to recreate a compressor with sidechain. 
+    #updateVolume reduces the volume of the track by 50% and then starts an interval 
+    (or more precisely a loop that runs every 100ms) to increase the volume of the track back to 100%. 
+    This is what happens here:
+        this.#volumeAdjust = this.#volumeAdjust * 1.08;
+    All this is done because otherwise the very soft sound effect "beat" cannot assert itself.
+    */
     #updateVolume() {
         if (this.#intervalId != -1) {
             clearInterval(this.#intervalId);
@@ -119,9 +127,6 @@ class AudioPlayer {
         this.#setVolumeFromArray(this.#volumeAdjust);
     }
 
-    /**
-     * Play impact. 
-     */
     PlayImpact() {
         if (!Audio_A.paused)
         {

@@ -274,7 +274,7 @@ class RectangleControl {
         this.#mousePosition.x = this.#referenceRect.Width() / 2;
         this.#mousePosition.y = this.#referenceRect.Height() / 2;
 
-        this.#calculateMousePointerProximities();
+        this.#calculateMousePointerProximities(this.#mousePosition);
         this.#audioPlayer.SetVolume(this.#mouseProximities.GetProximities());
 
     }
@@ -292,8 +292,15 @@ class RectangleControl {
      * I.e if mouse pointer is at top left exactly the resulting array looks like so [1,0,0,0].
      * Proximity values are normalized [0,1], where 0 means the maximum distance and 1 means the closest position to
      * a specified corner position. This will only work for rectangles btw.
+     * @param {Point} pointerPosition Use this passed or the traced mouse position if no value was passed.
      */
-    #calculateMousePointerProximities() {
-        this.#mouseProximities.Update(this.#referenceRect, this.#trailingMousePosition);
+    #calculateMousePointerProximities(pointerPosition) {
+        if (!pointerPosition) {
+            this.#mouseProximities.Update(this.#referenceRect, this.#trailingMousePosition);
+        }
+        else {
+            this.#mouseProximities.Update(this.#referenceRect, pointerPosition);
+        }
+        
     }
 }
