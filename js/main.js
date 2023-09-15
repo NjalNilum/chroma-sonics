@@ -66,6 +66,8 @@ function PressStop() {
     rectControl.Reset();
     particleCanvas.ClearScatterEvents();
     hasStarted = false;
+
+    PressMouseTracking();
 }
 
 /** Click on PLay button */
@@ -79,6 +81,8 @@ function PressPlay() {
     // fade in the title and my name
     const header = document.getElementById('header');
     header.classList.add('fadeInAnimation');
+
+    PressMouseTracking();
 }
 
 /** Click event mouse tracking */

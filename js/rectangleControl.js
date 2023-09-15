@@ -141,14 +141,22 @@ class RectangleControl {
     }
 
     /**
-     * Activate/Deactivate mouse tracking mode. If active parzticles will follow mouse pointer
+     * Activate/Deactivate mouse tracking mode. If active particles will follow mouse pointer
      * @param {boolean} toActive 
      */
     SetMouseTracking(toActive) {
         this.#mouseTrackingActive = toActive;
         this.#particleCanvas.UpdateOrbit(this.#mouseTrackingActive);
-        if (!this.#mouseTrackingActive) {
+        const canvas = document.querySelector("#canvasParticle");
+        
+        if (this.#mouseTrackingActive && !Audio_A.paused)
+        {
+            document.body.classList.add("nocursor");
+        }
+        else
+        {
             this.#resetMousePositionToCenter();
+            document.body.classList.remove("nocursor");
         }
     }
 
